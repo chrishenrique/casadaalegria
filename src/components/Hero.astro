@@ -1,0 +1,271 @@
+---
+const WA = 'https://wa.me/5511999999999?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20visita%20ao%20sal%C3%A3o%20Casa%20da%20Alegria!';
+
+const slides = [
+  { seed: 'festa-infantil-1', alt: 'Festa temática colorida para crianças' },
+  { seed: 'festa-infantil-2', alt: 'Decoração encantada de aniversário' },
+  { seed: 'festa-infantil-3', alt: 'Crianças comemorando com balões' },
+  { seed: 'festa-infantil-4', alt: 'Mesa de doces e bolo temático' },
+  { seed: 'festa-infantil-5', alt: 'Salão decorado para festa infantil' },
+];
+---
+
+<section id="inicio" class="hero" aria-label="Início">
+
+  <!-- Carrossel de fundo -->
+  <div class="hero-slides" aria-hidden="true">
+    {slides.map((s, i) => (
+      <img
+        src={`https://picsum.photos/seed/${s.seed}/1400/900`}
+        alt={s.alt}
+        class={`hero-slide ${i === 0 ? 'active' : ''}`}
+        loading={i === 0 ? 'eager' : 'lazy'}
+        width="1400"
+        height="900"
+      />
+    ))}
+  </div>
+
+  <!-- Overlay gradiente — mantém as cores e garante leitura -->
+  <div class="hero-overlay" aria-hidden="true"></div>
+
+  <!-- Conteúdo -->
+  <div class="container hero-content">
+    <div class="badge">Festas Inesquecíveis para Crianças</div>
+
+    <h1 class="hero-title">
+      Realizamos os Sonhos<br />
+      <em class="highlight">do Seu Pequeno!</em>
+    </h1>
+
+    <p class="hero-sub">
+      Na <strong>Casa da Alegria</strong>, cada festa é uma experiência mágica e única.
+      Decorações encantadoras, diversão garantida e momentos que ficarão para sempre
+      na memória da sua família.
+    </p>
+
+    <div class="hero-btns">
+      <a href={WA} target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Agendar pelo WhatsApp
+      </a>
+      <a href="#servicos" class="btn btn-outline-white">
+        Conhecer serviços
+      </a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">+500</span>
+        <span class="stat-lbl">Festas Realizadas</span>
+      </div>
+      <div class="stat-div"></div>
+      <div class="stat">
+        <span class="stat-num">10+</span>
+        <span class="stat-lbl">Anos de Experiência</span>
+      </div>
+      <div class="stat-div"></div>
+      <div class="stat">
+        <span class="stat-num">⭐ 4.9</span>
+        <span class="stat-lbl">Avaliação Google</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Indicadores de slide -->
+  <div class="slide-dots" aria-hidden="true">
+    {slides.map((_, i) => (
+      <span class={`slide-dot ${i === 0 ? 'active' : ''}`}></span>
+    ))}
+  </div>
+
+  <!-- Wave -->
+  <div class="hero-wave" aria-hidden="true"></div>
+</section>
+
+<style>
+  .hero {
+    min-height: 100dvh;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding: 100px 20px 110px;
+  }
+
+  /* ── Slides de fundo ── */
+  .hero-slides {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero-slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out;
+  }
+
+  .hero-slide.active {
+    opacity: 1;
+  }
+
+  /* ── Overlay gradiente ──
+     Cor forte o suficiente para leitura, mas deixa as fotos respirarem */
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      135deg,
+      rgba(90, 10, 180, 0.87) 0%,
+      rgba(195, 45, 100, 0.82) 55%,
+      rgba(200, 100, 10, 0.78) 100%
+    );
+  }
+
+  /* Wave bottom */
+  .hero-wave {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 90px;
+    background: var(--bg);
+    clip-path: ellipse(58% 100% at 50% 100%);
+    z-index: 3;
+  }
+
+  /* ── Conteúdo ── */
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.38);
+    color: white;
+    padding: 7px 22px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.4px;
+    margin-bottom: 1.4rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2.4rem, 6vw, 4.6rem);
+    color: white;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+    margin-bottom: 1.3rem;
+    line-height: 1.1;
+  }
+
+  em.highlight {
+    font-style: normal;
+    color: var(--yellow);
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.35);
+  }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2.2vw, 1.18rem);
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+    max-width: 600px;
+    margin-bottom: 2.4rem;
+    line-height: 1.8;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 2.8rem;
+  }
+  .hero-btns .btn { font-size: 1.05rem; padding: 15px 30px; }
+
+  /* Stats */
+  .hero-stats {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.2rem;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 18px 32px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .stat { text-align: center; color: white; }
+  .stat-num {
+    display: block;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.85rem;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-lbl { font-size: 0.74rem; opacity: 0.88; font-weight: 700; }
+  .stat-div { width: 1px; height: 40px; background: rgba(255, 255, 255, 0.25); }
+
+  /* Dots */
+  .slide-dots {
+    position: absolute;
+    bottom: 105px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    gap: 8px;
+  }
+
+  .slide-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.45);
+    transition: background 0.4s, transform 0.4s;
+    display: block;
+  }
+  .slide-dot.active {
+    background: white;
+    transform: scale(1.4);
+  }
+
+  @media (max-width: 560px) {
+    .stat-div { display: none; }
+    .hero-stats { gap: 0.8rem; padding: 14px 20px; }
+    .slide-dots { bottom: 96px; }
+  }
+</style>
+
+<script>
+  const slides = document.querySelectorAll<HTMLImageElement>('.hero-slide');
+  const dots = document.querySelectorAll<HTMLElement>('.slide-dot');
+  let current = 0;
+
+  function goTo(next: number) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (next + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+  }
+
+  setInterval(() => goTo(current + 1), 5000);
+</script>

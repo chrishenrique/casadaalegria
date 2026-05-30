@@ -1,0 +1,238 @@
+---
+const testimonials = [
+  {
+    name: 'Ana Carolina Silva',
+    role: 'Mãe da pequena Sofia, 5 anos',
+    avatar: '👩',
+    rating: 5,
+    text: 'A festa da minha filha foi simplesmente mágica! A decoração estava perfeita, o buffet delicioso e a equipe muito atenciosa. Sofia ficou encantada com a decoração de unicórnio! Com certeza voltaremos!',
+    theme: '🦄 Festa Unicórnio',
+  },
+  {
+    name: 'Roberto Mendes',
+    role: 'Pai do Lucas, 7 anos',
+    avatar: '👨',
+    rating: 5,
+    text: 'Superou todas as nossas expectativas! O animador manteve as crianças entretidas o tempo todo, os pais ficaram super à vontade na área VIP e a organização foi impecável. Recomendo de olhos fechados!',
+    theme: '🦸 Festa Super-Heróis',
+  },
+  {
+    name: 'Fernanda Costa',
+    role: 'Mãe da Isabela, 4 anos',
+    avatar: '👩‍🦱',
+    rating: 5,
+    text: 'Que espaço lindo e bem estruturado! As crianças adoraram a área de recreação e a festa foi um sucesso total. A equipe da Casa da Alegria é comprometida e muito profissional. Adorei cada detalhe!',
+    theme: '👸 Festa Princesas',
+  },
+  {
+    name: 'Marcos e Juliana Ferreira',
+    role: 'Pais do Davi, 6 anos',
+    avatar: '👫',
+    rating: 5,
+    text: 'Desde o primeiro contato até o último momento da festa, tudo foi perfeito. O atendimento via WhatsApp foi rápido, a decoração do tema dinos ficou incrível e as crianças brincaram muito! 5 estrelas merece 10!',
+    theme: '🦕 Festa Dinossauros',
+  },
+  {
+    name: 'Priscila Rodrigues',
+    role: 'Mãe da Valentina, 3 anos',
+    avatar: '👩‍🦰',
+    rating: 5,
+    text: 'Minha neném teve a festa dos sonhos! O buffet foi elogiado por todos os convidados, a decoração floral estava deslumbrante e o espaço é enorme e limpo. Obrigada Casa da Alegria por tornar esse dia especial!',
+    theme: '🌸 Festa Jardim Encantado',
+  },
+  {
+    name: 'Carlos Eduardo Nunes',
+    role: 'Pai do Enzo, 8 anos',
+    avatar: '👨‍💼',
+    rating: 5,
+    text: 'Meu filho queria uma festa de Minecraft e a equipe entregou além do esperado! Cada detalhe foi pensado, o fotógrafo capturou momentos lindíssimos e o preço foi justo pelo que nos foi entregue. 100% recomendo!',
+    theme: '🎮 Festa Minecraft',
+  },
+];
+---
+
+<section id="depoimentos" class="testimonials" aria-label="Depoimentos de clientes">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">Depoimentos</span>
+      <h2 class="section-title">O que Nossas Famílias Dizem! 💬</h2>
+      <p class="section-subtitle">
+        A felicidade dos nossos clientes é o que nos motiva a ser cada vez melhores. Veja o
+        que as famílias que já viveram a experiência Casa da Alegria têm a dizer.
+      </p>
+    </div>
+
+    <div class="testi-grid stagger reveal">
+      {testimonials.map((t) => (
+        <article class="testi-card">
+          <div class="testi-top">
+            <div class="testi-avatar">{t.avatar}</div>
+            <div class="testi-meta">
+              <strong class="testi-name">{t.name}</strong>
+              <span class="testi-role">{t.role}</span>
+              <div class="stars" aria-label={`${t.rating} estrelas de 5`}>
+                {'⭐'.repeat(t.rating)}
+              </div>
+            </div>
+          </div>
+          <blockquote class="testi-quote">"{t.text}"</blockquote>
+          <div class="testi-theme">{t.theme}</div>
+        </article>
+      ))}
+    </div>
+
+    <div class="rating-summary reveal">
+      <div class="rating-big">⭐ 4.9</div>
+      <div class="rating-text">
+        <strong>Excelente avaliação!</strong>
+        <span>Baseado em +180 avaliações no Google</span>
+      </div>
+      <a
+        href="https://g.page/r"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn btn-secondary"
+      >
+        Ver todas as avaliações
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials {
+    background: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .testimonials::before {
+    content: '""';
+    position: absolute;
+    font-size: 25rem;
+    font-family: Georgia, serif;
+    color: var(--pink-light);
+    top: -60px;
+    left: -20px;
+    line-height: 1;
+    pointer-events: none;
+    opacity: 0.4;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+    position: relative;
+    z-index: 1;
+  }
+  .section-header .section-subtitle { margin: 0 auto; }
+
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .testi-card {
+    background: var(--bg);
+    border-radius: 22px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border-left: 4px solid var(--pink);
+  }
+
+  .testi-card:nth-child(2n) { border-left-color: var(--purple); }
+  .testi-card:nth-child(3n) { border-left-color: var(--orange); }
+
+  .testi-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+    background: white;
+  }
+
+  .testi-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .testi-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--pink-light), #e8d5ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    flex-shrink: 0;
+  }
+
+  .testi-meta { display: flex; flex-direction: column; gap: 2px; }
+  .testi-name { font-size: 0.95rem; color: var(--text); }
+  .testi-role { font-size: 0.78rem; color: var(--text-light); font-weight: 600; }
+  .stars { font-size: 0.85rem; margin-top: 2px; }
+
+  .testi-quote {
+    font-size: 0.88rem;
+    color: var(--text-light);
+    line-height: 1.75;
+    font-style: italic;
+    flex: 1;
+  }
+
+  .testi-theme {
+    display: inline-block;
+    background: var(--pink-light);
+    color: var(--pink-dark);
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    align-self: flex-start;
+  }
+
+  .rating-summary {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: linear-gradient(135deg, var(--purple) 0%, var(--pink) 100%);
+    border-radius: 22px;
+    padding: 28px 36px;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .rating-big {
+    font-family: 'Fredoka One', cursive;
+    font-size: 3rem;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .rating-text {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    min-width: 160px;
+  }
+  .rating-text strong { font-size: 1.1rem; }
+  .rating-text span { font-size: 0.85rem; opacity: 0.85; }
+
+  @media (max-width: 900px) {
+    .testi-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .testi-grid { grid-template-columns: 1fr; }
+    .rating-summary { padding: 24px 20px; }
+  }
+</style>

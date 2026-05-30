@@ -1,0 +1,220 @@
+---
+const year = new Date().getFullYear();
+
+const links = {
+  site: [
+    { href: '#sobre', label: 'Sobre Nós' },
+    { href: '#servicos', label: 'Serviços' },
+    { href: '#pacotes', label: 'Pacotes' },
+    { href: '#galeria', label: 'Galeria' },
+    { href: '#depoimentos', label: 'Depoimentos' },
+    { href: '#contato', label: 'Contato' },
+  ],
+  services: [
+    'Festas Infantis',
+    'Decoração Temática',
+    'Buffet Infantil',
+    'Animação',
+    'Fotografia',
+    'Aluguel de Espaço',
+  ],
+};
+
+const WA = 'https://wa.me/5511999999999?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20o%20sal%C3%A3o%20Casa%20da%20Alegria.';
+---
+
+<footer class="footer">
+  <div class="footer-wave" aria-hidden="true"></div>
+
+  <div class="container footer-body">
+    <!-- Brand -->
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <span>🎈</span>
+        <div>
+          <span class="footer-logo-name">Casa da Alegria</span>
+          <span class="footer-logo-sub">Salão de Festas</span>
+        </div>
+      </div>
+      <p class="footer-tagline">
+        Realizamos os sonhos do seu pequeno com amor, criatividade e muita diversão!
+        Cada festa é um evento único e inesquecível. 🌈
+      </p>
+      <a href={WA} target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp footer-wa">
+        📱 WhatsApp: (11) 9999-9999
+      </a>
+    </div>
+
+    <!-- Links do site -->
+    <div class="footer-col">
+      <h4 class="footer-col-title">Navegação</h4>
+      <ul class="footer-links">
+        {links.site.map((l) => (
+          <li><a href={l.href}>{l.label}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Serviços -->
+    <div class="footer-col">
+      <h4 class="footer-col-title">Serviços</h4>
+      <ul class="footer-links">
+        {links.services.map((s) => <li><span>{s}</span></li>)}
+      </ul>
+    </div>
+
+    <!-- Contato rápido -->
+    <div class="footer-col">
+      <h4 class="footer-col-title">Contato</h4>
+      <ul class="footer-contact-list">
+        <li>📍 Rua das Flores, 123 — SP</li>
+        <li>📱 (11) 9999-9999</li>
+        <li>📧 contato@casadaalegria.com.br</li>
+        <li>🕐 Seg–Sáb, 8h às 20h</li>
+      </ul>
+      <div class="footer-socials">
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-icon">📷</a>
+        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="social-icon">📘</a>
+        <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="social-icon">🎵</a>
+        <a href={WA} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="social-icon">💬</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p>© {year} Casa da Alegria — Todos os direitos reservados.</p>
+      <p class="footer-made">Feito com 💖 para espalhar alegria!</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: linear-gradient(135deg, #1a1040 0%, #2d1b6b 100%);
+    color: rgba(255, 255, 255, 0.85);
+    position: relative;
+  }
+
+  .footer-wave {
+    height: 60px;
+    background: var(--bg);
+    clip-path: ellipse(58% 100% at 50% 0%);
+  }
+
+  .footer-body {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 3rem;
+    padding: 60px 20px;
+  }
+
+  /* Brand */
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1.2rem;
+  }
+  .footer-logo span:first-child { font-size: 2.5rem; }
+  .footer-logo-name {
+    display: block;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.4rem;
+    color: white;
+  }
+  .footer-logo-sub {
+    display: block;
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.55);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+    margin-top: 2px;
+  }
+  .footer-tagline {
+    font-size: 0.88rem;
+    line-height: 1.75;
+    opacity: 0.8;
+    margin-bottom: 1.4rem;
+    max-width: 300px;
+  }
+  .footer-wa { font-size: 0.85rem; padding: 10px 18px; }
+
+  /* Columns */
+  .footer-col-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.1rem;
+    color: white;
+    margin-bottom: 1rem;
+    position: relative;
+    padding-bottom: 10px;
+  }
+  .footer-col-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 32px;
+    height: 3px;
+    background: var(--pink);
+    border-radius: 2px;
+  }
+
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .footer-links li a, .footer-links li span {
+    font-size: 0.85rem;
+    opacity: 0.75;
+    transition: opacity 0.2s, color 0.2s;
+    cursor: pointer;
+  }
+  .footer-links li a:hover { opacity: 1; color: var(--pink); }
+
+  .footer-contact-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 1.2rem;
+  }
+  .footer-contact-list li { font-size: 0.83rem; opacity: 0.8; }
+
+  .footer-socials {
+    display: flex;
+    gap: 10px;
+  }
+  .social-icon {
+    font-size: 1.3rem;
+    transition: transform 0.2s;
+  }
+  .social-icon:hover { transform: scale(1.2); }
+
+  /* Bottom bar */
+  .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .footer-bottom-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .footer-bottom p {
+    font-size: 0.82rem;
+    opacity: 0.6;
+  }
+  .footer-made { opacity: 0.5 !important; }
+
+  @media (max-width: 900px) {
+    .footer-body {
+      grid-template-columns: 1fr 1fr;
+    }
+    .footer-brand { grid-column: 1 / -1; }
+  }
+  @media (max-width: 500px) {
+    .footer-body { grid-template-columns: 1fr; padding: 40px 16px; }
+    .footer-bottom-inner { flex-direction: column; text-align: center; }
+  }
+</style>

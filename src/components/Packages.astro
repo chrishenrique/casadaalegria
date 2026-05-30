@@ -1,0 +1,293 @@
+---
+const WA_BASE = 'https://wa.me/5511999999999?text=';
+
+const packages = [
+  {
+    name: 'Alegria',
+    emoji: '🌈',
+    price: '1.499',
+    desc: 'Ideal para festinhas menores e íntimas, com o charme que toda criança merece.',
+    highlight: false,
+    color: '#4CC9F0',
+    features: [
+      '✅ Salão por 4 horas',
+      '✅ Decoração temática básica',
+      '✅ Mesas e cadeiras para 80 pessoas',
+      '✅ Balões e enfeites',
+      '✅ Área exclusiva para buffet',
+      '✅ Estacionamento gratuito',
+      '❌ Buffet incluso',
+      '❌ Animador',
+    ],
+    waMsg: encodeURIComponent('Olá! Tenho interesse no pacote Alegria. Pode me passar mais detalhes?'),
+  },
+  {
+    name: 'Sonho',
+    emoji: '⭐',
+    price: '2.899',
+    desc: 'Nosso pacote mais popular! A festa completa que toda criança sonha em ter.',
+    highlight: true,
+    color: '#9B5DE5',
+    features: [
+      '✅ Salão por 5 horas',
+      '✅ Decoração temática premium',
+      '✅ Mesas e cadeiras para 120 pessoas',
+      '✅ Buffet completo para 60 crianças',
+      '✅ Animador profissional (3h)',
+      '✅ Espaço lúdico incluído',
+      '✅ Estacionamento gratuito',
+      '✅ Limpeza completa inclusa',
+    ],
+    waMsg: encodeURIComponent('Olá! Tenho interesse no pacote Sonho. Pode me passar mais detalhes?'),
+  },
+  {
+    name: 'Mágico',
+    emoji: '👑',
+    price: '4.599',
+    desc: 'A experiência mais completa e luxuosa para uma festa verdadeiramente inesquecível!',
+    highlight: false,
+    color: '#FF6B9D',
+    features: [
+      '✅ Salão por 6 horas',
+      '✅ Decoração temática luxo',
+      '✅ Mesas e cadeiras para 200 pessoas',
+      '✅ Buffet completo para 100 crianças',
+      '✅ Animador + DJ profissional',
+      '✅ Personagem vivo temático',
+      '✅ Fotógrafo profissional',
+      '✅ Lembrancinha personalizada',
+    ],
+    waMsg: encodeURIComponent('Olá! Tenho interesse no pacote Mágico. Pode me passar mais detalhes?'),
+  },
+];
+---
+
+<section id="pacotes" class="packages" aria-label="Pacotes e preços">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">Planos e Preços</span>
+      <h2 class="section-title">Escolha o Pacote Perfeito! 🎯</h2>
+      <p class="section-subtitle">
+        Temos opções para todos os bolsos sem abrir mão da qualidade e da magia que seu
+        filho merece. Todos os valores são por festa completa.
+      </p>
+    </div>
+
+    <div class="packages-grid stagger reveal">
+      {packages.map((pkg) => (
+        <article class={`pkg-card ${pkg.highlight ? 'featured' : ''}`} style={`--c: ${pkg.color}`}>
+          {pkg.highlight && <div class="popular-badge">⭐ Mais Popular</div>}
+
+          <div class="pkg-header">
+            <span class="pkg-emoji">{pkg.emoji}</span>
+            <h3 class="pkg-name">Pacote {pkg.name}</h3>
+            <p class="pkg-desc">{pkg.desc}</p>
+            <div class="pkg-price">
+              <span class="price-from">A partir de</span>
+              <div class="price-value">
+                <span class="price-currency">R$</span>
+                <span class="price-num">{pkg.price}</span>
+              </div>
+            </div>
+          </div>
+
+          <ul class="pkg-features">
+            {pkg.features.map((f) => (
+              <li class={f.startsWith('❌') ? 'unavail' : ''}>{f}</li>
+            ))}
+          </ul>
+
+          <a
+            href={`${WA_BASE}${pkg.waMsg}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class={`btn pkg-btn ${pkg.highlight ? 'btn-primary' : 'btn-outline-pkg'}`}
+          >
+            Quero esse pacote 🎊
+          </a>
+        </article>
+      ))}
+    </div>
+
+    <p class="pkg-note reveal">
+      💡 <strong>Atenção:</strong> Valores sujeitos a alteração conforme a data e disponibilidade.
+      Entre em contato para um orçamento personalizado!
+    </p>
+  </div>
+</section>
+
+<style>
+  .packages {
+    background: linear-gradient(180deg, var(--bg) 0%, #f0e8ff 100%);
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+  .section-header .section-subtitle { margin: 0 auto; }
+
+  .packages-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .pkg-card {
+    background: white;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    border: 2px solid transparent;
+  }
+
+  .pkg-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+  }
+
+  .pkg-card.featured {
+    border-color: var(--purple);
+    transform: scale(1.03);
+    box-shadow: 0 20px 60px rgba(155, 93, 229, 0.25);
+  }
+  .pkg-card.featured:hover {
+    transform: scale(1.03) translateY(-8px);
+    box-shadow: 0 28px 70px rgba(155, 93, 229, 0.3);
+  }
+
+  .popular-badge {
+    background: var(--purple);
+    color: white;
+    text-align: center;
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+  }
+
+  .pkg-header {
+    background: linear-gradient(135deg, var(--c) 0%, color-mix(in srgb, var(--c) 60%, #fff) 100%);
+    padding: 28px 24px;
+    color: white;
+    text-align: center;
+  }
+
+  .pkg-emoji {
+    font-size: 2.8rem;
+    display: block;
+    margin-bottom: 10px;
+    animation: float3 3s ease-in-out infinite;
+  }
+
+  .pkg-name {
+    font-size: 1.6rem;
+    margin-bottom: 8px;
+  }
+
+  .pkg-desc {
+    font-size: 0.88rem;
+    opacity: 0.9;
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .price-from {
+    font-size: 0.78rem;
+    opacity: 0.85;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .price-value {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 4px;
+  }
+
+  .price-currency {
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin-top: 8px;
+  }
+
+  .price-num {
+    font-family: 'Fredoka One', cursive;
+    font-size: 3.2rem;
+    line-height: 1;
+  }
+
+  .pkg-features {
+    list-style: none;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .pkg-features li {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .pkg-features li.unavail {
+    color: #bbb;
+    text-decoration: line-through;
+  }
+
+  .pkg-btn {
+    display: flex;
+    justify-content: center;
+    margin: 0 24px 24px;
+    border-radius: 14px;
+  }
+
+  .btn-outline-pkg {
+    background: transparent;
+    color: var(--c);
+    border: 2px solid var(--c);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    padding: 12px 24px;
+    border-radius: 14px;
+    transition: all 0.3s;
+    font-size: 0.95rem;
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .btn-outline-pkg:hover {
+    background: var(--c);
+    color: white;
+    transform: translateY(-2px);
+  }
+
+  .pkg-note {
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-top: 2.5rem;
+    padding: 16px 24px;
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+  }
+
+  @media (max-width: 900px) {
+    .packages-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+    .pkg-card.featured { transform: none; }
+    .pkg-card.featured:hover { transform: translateY(-8px); }
+  }
+</style>

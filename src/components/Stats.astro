@@ -1,0 +1,98 @@
+---
+const stats = [
+  { icon: '🎉', value: 500, suffix: '+', label: 'Festas Realizadas', color: '#FF6B9D' },
+  { icon: '😊', value: 98, suffix: '%', label: 'Clientes Satisfeitos', color: '#9B5DE5' },
+  { icon: '📅', value: 10, suffix: '+', label: 'Anos de Experiência', color: '#FF9F1C' },
+  { icon: '🌟', value: 50, suffix: '+', label: 'Temas Disponíveis', color: '#4CC9F0' },
+];
+---
+
+<section class="stats-section" aria-label="Nossos números">
+  <div class="container">
+    <div class="stats-grid stagger reveal">
+      {stats.map((s) => (
+        <div class="stat-card" style={`--c: ${s.color}`}>
+          <div class="stat-icon">{s.icon}</div>
+          <div class="stat-number">
+            <span class="counter" data-target={s.value} data-suffix={s.suffix}>0{s.suffix}</span>
+          </div>
+          <div class="stat-label">{s.label}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .stats-section {
+    padding: 50px 20px;
+    background: white;
+    position: relative;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+
+  .stat-card {
+    background: linear-gradient(135deg, var(--c) 0%, color-mix(in srgb, var(--c) 70%, #fff) 100%);
+    border-radius: 20px;
+    padding: 32px 20px;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 30px color-mix(in srgb, var(--c) 40%, transparent);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px color-mix(in srgb, var(--c) 50%, transparent);
+  }
+
+  .stat-icon {
+    font-size: 2.4rem;
+    margin-bottom: 10px;
+    display: inline-block;
+  }
+
+  .stat-number {
+    font-family: 'Fredoka One', cursive;
+    font-size: 2.8rem;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    opacity: 0.9;
+    letter-spacing: 0.5px;
+  }
+
+  @media (max-width: 768px) {
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 400px) {
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

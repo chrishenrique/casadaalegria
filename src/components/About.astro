@@ -1,0 +1,193 @@
+---
+const values = [
+  { icon: '💖', title: 'Amor em cada detalhe', desc: 'Cada festa é planejada com carinho e dedicação para superar suas expectativas.' },
+  { icon: '🎨', title: 'Decoração personalizada', desc: 'Criamos ambientes únicos que combinam com o tema e personalidade do seu filho.' },
+  { icon: '🛡️', title: 'Segurança e conforto', desc: 'Espaço seguro, limpo e preparado especialmente para crianças de todas as idades.' },
+  { icon: '✨', title: 'Memórias inesquecíveis', desc: 'Transformamos cada momento em uma lembrança especial que dura para sempre.' },
+];
+---
+
+<section id="sobre" class="about" aria-label="Sobre nós">
+  <div class="container about-grid">
+    <div class="about-visual reveal-left">
+      <div class="img-stack">
+        <div class="img-main">
+          <img
+            src="https://picsum.photos/seed/festakids1/600/500"
+            alt="Salão de festas decorado para crianças"
+            loading="lazy"
+            width="600"
+            height="500"
+          />
+          <div class="img-badge">
+            <span class="badge-icon">🎈</span>
+            <div>
+              <strong>+500</strong> festas<br />realizadas!
+            </div>
+          </div>
+        </div>
+        <div class="img-secondary">
+          <img
+            src="https://picsum.photos/seed/festakids2/300/220"
+            alt="Crianças comemorando aniversário"
+            loading="lazy"
+            width="300"
+            height="220"
+          />
+        </div>
+        <div class="floating-emoji e1" aria-hidden="true">🎂</div>
+        <div class="floating-emoji e2" aria-hidden="true">⭐</div>
+        <div class="floating-emoji e3" aria-hidden="true">🎀</div>
+      </div>
+    </div>
+
+    <div class="about-text reveal-right">
+      <span class="section-tag">Sobre Nós</span>
+      <h2 class="section-title">A Magia das Festas Infantis começa aqui!</h2>
+      <p class="section-subtitle">
+        Há mais de 10 anos, a <strong>Casa da Alegria</strong> transforma aniversários em eventos
+        extraordinários. Somos especializados em festas infantis e sabemos exatamente como
+        criar o cenário perfeito para os sonhos do seu pequeno.
+      </p>
+      <p class="about-text-extra">
+        Nosso espaço aconchegante e moderno foi projetado para proporcionar conforto às crianças
+        e tranquilidade aos pais, com toda a estrutura necessária para uma festa perfeita.
+      </p>
+
+      <div class="values-grid">
+        {values.map((v) => (
+          <div class="value-item">
+            <span class="value-icon">{v.icon}</span>
+            <div>
+              <strong class="value-title">{v.title}</strong>
+              <p class="value-desc">{v.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <a href="#pacotes" class="btn btn-primary">
+        Conhecer nossos pacotes 🎉
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    background: var(--bg);
+    overflow: hidden;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  /* Visual side */
+  .about-visual { position: relative; }
+
+  .img-stack { position: relative; }
+
+  .img-main {
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(155, 93, 229, 0.2);
+    position: relative;
+  }
+
+  .img-main img {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .img-main:hover img { transform: scale(1.04); }
+
+  .img-badge {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: white;
+    border-radius: 16px;
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    font-size: 0.85rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  .badge-icon { font-size: 2rem; }
+
+  .img-secondary {
+    position: absolute;
+    bottom: -40px;
+    right: -30px;
+    width: 200px;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+    border: 4px solid white;
+  }
+  .img-secondary img { width: 100%; height: 140px; object-fit: cover; }
+
+  .floating-emoji {
+    position: absolute;
+    font-size: 2rem;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
+  }
+  .e1 { top: -20px; right: 40px; }
+  .e2 { top: 50%; right: -25px; }
+  .e3 { bottom: -10px; left: -20px; }
+
+  /* Text side */
+  .about-text-extra {
+    color: var(--text-light);
+    margin: 1rem 0 1.8rem;
+    line-height: 1.75;
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .value-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    background: white;
+    border-radius: 16px;
+    padding: 14px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .value-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(155, 93, 229, 0.12);
+  }
+
+  .value-icon { font-size: 1.6rem; flex-shrink: 0; margin-top: 2px; }
+  .value-title { display: block; font-size: 0.85rem; color: var(--purple); margin-bottom: 3px; }
+  .value-desc { font-size: 0.78rem; color: var(--text-light); line-height: 1.5; }
+
+  @media (max-width: 900px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    .img-secondary { display: none; }
+    .floating-emoji { display: none; }
+    .img-main img { height: 280px; }
+  }
+
+  @media (max-width: 500px) {
+    .values-grid { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,0 +1,217 @@
+---
+const contacts = [
+  {
+    icon: '📍',
+    title: 'Endereço',
+    lines: ['Rua das Flores, 123', 'Jardim Primavera', 'São Paulo — SP', 'CEP: 01234-567'],
+    color: '#FF6B9D',
+  },
+  {
+    icon: '📱',
+    title: 'Telefone & WhatsApp',
+    lines: ['(11) 9999-9999', '(11) 3333-4444', 'WhatsApp disponível', 'Seg–Sáb, 8h às 20h'],
+    color: '#25D366',
+  },
+  {
+    icon: '🕐',
+    title: 'Horário de Funcionamento',
+    lines: ['Segunda à Sexta: 9h – 18h', 'Sábado: 8h – 20h', 'Domingo: sob agendamento', 'Festas: qualquer dia!'],
+    color: '#9B5DE5',
+  },
+  {
+    icon: '📧',
+    title: 'E-mail',
+    lines: ['contato@casadaalegria.com.br', 'comercial@casadaalegria.com.br', '', 'Resposta em até 24h'],
+    color: '#FF9F1C',
+  },
+];
+---
+
+<section id="contato" class="contact" aria-label="Contato e localização">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">Fale Conosco</span>
+      <h2 class="section-title">Venha nos Visitar! 🗺️</h2>
+      <p class="section-subtitle">
+        Adoramos receber as famílias para conhecer nosso espaço. Agende uma visita e venha
+        ver de perto a magia que preparamos para o seu filho!
+      </p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-cards stagger reveal">
+        {contacts.map((c) => (
+          <div class="contact-card" style={`--c: ${c.color}`}>
+            <div class="contact-icon">{c.icon}</div>
+            <div class="contact-info">
+              <strong class="contact-title">{c.title}</strong>
+              {c.lines.map((line) => line && <span class="contact-line">{line}</span>)}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="map-side reveal-right">
+        <div class="map-placeholder">
+          <div class="map-inner">
+            <span class="map-pin" aria-label="Localização no mapa">📍</span>
+            <p class="map-text">Casa da Alegria</p>
+            <p class="map-addr">Rua das Flores, 123 — São Paulo</p>
+            <a
+              href="https://maps.google.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-primary map-btn"
+            >
+              🗺️ Ver no Google Maps
+            </a>
+          </div>
+        </div>
+
+        <div class="social-block">
+          <p class="social-title">Siga-nos nas redes sociais</p>
+          <div class="social-links">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-link instagram">
+              <span aria-hidden="true">📷</span> Instagram
+            </a>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-link facebook">
+              <span aria-hidden="true">📘</span> Facebook
+            </a>
+            <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="social-link tiktok">
+              <span aria-hidden="true">🎵</span> TikTok
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact { background: var(--bg); }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+  .section-header .section-subtitle { margin: 0 auto; }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  .contact-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .contact-card {
+    background: white;
+    border-radius: 18px;
+    padding: 20px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    transition: transform 0.25s, box-shadow 0.25s;
+    border-top: 3px solid var(--c);
+  }
+  .contact-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 32px rgba(0,0,0,0.1);
+  }
+
+  .contact-icon { font-size: 2rem; flex-shrink: 0; }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .contact-title { font-size: 0.9rem; color: var(--purple); margin-bottom: 4px; }
+  .contact-line { font-size: 0.82rem; color: var(--text-light); font-weight: 600; line-height: 1.5; }
+
+  /* Map */
+  .map-placeholder {
+    background: linear-gradient(135deg, #e8d5ff 0%, var(--pink-light) 100%);
+    border-radius: 22px;
+    overflow: hidden;
+    position: relative;
+    height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow);
+  }
+
+  .map-inner {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .map-pin {
+    font-size: 3.5rem;
+    animation: bounce-arrow 1.5s ease-in-out infinite;
+    display: inline-block;
+  }
+
+  .map-text {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.4rem;
+    color: var(--purple);
+  }
+  .map-addr { font-size: 0.85rem; color: var(--text-light); font-weight: 600; }
+  .map-btn { margin-top: 8px; font-size: 0.9rem; padding: 10px 20px; }
+
+  /* Social */
+  .social-block {
+    background: white;
+    border-radius: 18px;
+    padding: 20px 24px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  }
+  .social-title {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-bottom: 12px;
+    text-align: center;
+  }
+  .social-links {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    transition: transform 0.2s, opacity 0.2s;
+    text-decoration: none;
+  }
+  .social-link:hover { transform: translateY(-2px); opacity: 0.85; }
+  .instagram { background: linear-gradient(135deg, #f9ce34, #ee2a7b, #6228d7); color: white; }
+  .facebook { background: #1877f2; color: white; }
+  .tiktok { background: #010101; color: white; }
+
+  @media (max-width: 900px) {
+    .contact-grid { grid-template-columns: 1fr; }
+    .contact-cards { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 480px) {
+    .contact-cards { grid-template-columns: 1fr; }
+  }
+</style>

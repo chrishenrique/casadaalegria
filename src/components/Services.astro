@@ -1,0 +1,185 @@
+---
+const services = [
+  {
+    icon: '🎨',
+    title: 'Decoração Temática',
+    desc: 'Decorações deslumbrantes baseadas nos temas favoritos do seu filho: princesas, super-heróis, dinossauros, unicórnios e muito mais!',
+    color: '#FF6B9D',
+  },
+  {
+    icon: '🍰',
+    title: 'Buffet Infantil',
+    desc: 'Cardápio completo e delicioso pensado especialmente para crianças, com salgados, doces artesanais, bolos temáticos e muito mais.',
+    color: '#FF9F1C',
+  },
+  {
+    icon: '🤹',
+    title: 'Entretenimento',
+    desc: 'Animadores, mágicos, personagens vivos, música ao vivo e brincadeiras interativas que garantem a diversão de todos.',
+    color: '#9B5DE5',
+  },
+  {
+    icon: '📸',
+    title: 'Foto e Vídeo',
+    desc: 'Equipe fotográfica especializada em festas infantis para registrar cada momento especial com qualidade profissional.',
+    color: '#4CC9F0',
+  },
+  {
+    icon: '🎪',
+    title: 'Espaço Lúdico',
+    desc: 'Área de recreação exclusiva com escorregadores, piscina de bolinhas, cama elástica e brinquedos para todas as idades.',
+    color: '#6BCB77',
+  },
+  {
+    icon: '🛋️',
+    title: 'Área VIP dos Pais',
+    desc: 'Espaço confortável e climatizado para os pais relaxarem enquanto as crianças se divertem com toda segurança.',
+    color: '#FF6B9D',
+  },
+];
+---
+
+<section id="servicos" class="services" aria-label="Nossos serviços">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">O que oferecemos</span>
+      <h2 class="section-title">Tudo para uma Festa Perfeita! 🎊</h2>
+      <p class="section-subtitle">
+        Da decoração ao buffet, do entretenimento ao registro fotográfico — cuidamos de cada
+        detalhe para que você e seu filho aproveitem cada segundo.
+      </p>
+    </div>
+
+    <div class="services-grid stagger reveal">
+      {services.map((s) => (
+        <article class="service-card" style={`--c: ${s.color}`}>
+          <div class="service-icon-wrap">
+            <span class="service-icon">{s.icon}</span>
+          </div>
+          <h3 class="service-title">{s.title}</h3>
+          <p class="service-desc">{s.desc}</p>
+          <div class="service-line"></div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .services {
+    background: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .services::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    left: -80px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, var(--pink-light) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .services::after {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    right: -80px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, #e8d5ff 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+  .section-header .section-subtitle { margin: 0 auto; }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .service-card {
+    background: var(--bg);
+    border-radius: 22px;
+    padding: 32px 24px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: default;
+    border: 2px solid transparent;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--c);
+    border-radius: 22px 22px 0 0;
+    transition: height 0.3s ease;
+  }
+
+  .service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+    border-color: color-mix(in srgb, var(--c) 20%, transparent);
+  }
+
+  .service-card:hover::before { height: 6px; }
+
+  .service-icon-wrap {
+    width: 64px;
+    height: 64px;
+    border-radius: 18px;
+    background: color-mix(in srgb, var(--c) 15%, white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.2rem;
+    transition: transform 0.3s ease;
+  }
+  .service-card:hover .service-icon-wrap { transform: scale(1.05); }
+
+  .service-icon { font-size: 2rem; }
+
+  .service-title {
+    font-size: 1.15rem;
+    color: var(--text);
+    margin-bottom: 0.6rem;
+  }
+
+  .service-desc {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    line-height: 1.65;
+  }
+
+  .service-line {
+    margin-top: 1.2rem;
+    height: 3px;
+    width: 40px;
+    background: var(--c);
+    border-radius: 3px;
+    transition: width 0.3s ease;
+  }
+  .service-card:hover .service-line { width: 100%; }
+
+  @media (max-width: 900px) {
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .services-grid { grid-template-columns: 1fr; }
+  }
+</style>
