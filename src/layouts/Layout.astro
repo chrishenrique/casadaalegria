@@ -27,6 +27,18 @@ const {
     />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+
+    <!-- Google Analytics (GA4) -->
+    <!-- Quando tiver o Measurement ID, substitua G-XXXXXXXXXX e descomente as linhas abaixo -->
+    <!--
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    -->
   </head>
   <body>
     <slot />
