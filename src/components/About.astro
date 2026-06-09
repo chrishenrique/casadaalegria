@@ -12,13 +12,16 @@ const values = [
     <div class="about-visual reveal-left">
       <div class="img-stack">
         <div class="img-main">
-          <img
-            src="https://picsum.photos/seed/festakids1/600/500"
-            alt="Salão de festas decorado para crianças"
-            loading="lazy"
-            width="600"
-            height="500"
-          />
+          <video
+            src="/assets/videos/tour-espaco.mp4"
+            class="tour-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            aria-label="Tour em vídeo pelo espaço da Casa da Alegria"
+          ></video>
           <div class="img-badge">
             <span class="badge-icon">🎈</span>
             <div>
@@ -28,8 +31,8 @@ const values = [
         </div>
         <div class="img-secondary">
           <img
-            src="https://picsum.photos/seed/festakids2/300/220"
-            alt="Crianças comemorando aniversário"
+            src="/assets/images/festa-circo-rosa.jpeg"
+            alt="Decoração de festa temática circo em tons de rosa"
             loading="lazy"
             width="300"
             height="220"
@@ -89,19 +92,27 @@ const values = [
   /* Visual side */
   .about-visual { position: relative; }
 
-  .img-stack { position: relative; }
+  .img-stack {
+    position: relative;
+    max-width: 340px;
+    margin: 0 auto;
+  }
 
   .img-main {
     border-radius: 24px;
     overflow: hidden;
     box-shadow: 0 20px 60px rgba(155, 93, 229, 0.2);
     position: relative;
+    aspect-ratio: 9 / 16;
   }
 
-  .img-main img {
+  .img-main img,
+  .img-main video {
     width: 100%;
-    height: 380px;
+    height: 100%;
     object-fit: cover;
+    display: block;
+    background: #1a1a1a;
     transition: transform 0.4s ease;
   }
   .img-main:hover img { transform: scale(1.04); }
@@ -184,7 +195,7 @@ const values = [
     }
     .img-secondary { display: none; }
     .floating-emoji { display: none; }
-    .img-main img { height: 280px; }
+    .img-stack { max-width: 300px; }
   }
 
   @media (max-width: 500px) {

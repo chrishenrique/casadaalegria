@@ -85,6 +85,7 @@ const WA = 'https://wa.me/5531971520138?text=Ol%C3%A1!%20Gostaria%20de%20saber%2
     <div class="container footer-bottom-inner">
       <p>© {year} Casa da Alegria — Todos os direitos reservados.</p>
       <p class="footer-made">Feito com 💖 para espalhar alegria!</p>
+      <p class="footer-dev">Desenvolvido por <a href="https://christianocosta.com.br" target="_blank" rel="noopener noreferrer">Christiano Costa</a></p>
     </div>
   </div>
 </footer>
@@ -206,6 +207,9 @@ const WA = 'https://wa.me/5531971520138?text=Ol%C3%A1!%20Gostaria%20de%20saber%2
     opacity: 0.6;
   }
   .footer-made { opacity: 0.5 !important; }
+  .footer-dev { opacity: 0.5 !important; font-size: 0.82rem; }
+  .footer-dev a { color: rgba(255, 255, 255, 0.6); text-decoration: none; transition: color 0.2s; }
+  .footer-dev a:hover { color: var(--pink); }
 
   @media (max-width: 900px) {
     .footer-body {

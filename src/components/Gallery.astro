@@ -1,14 +1,14 @@
 ---
 const photos = [
-  { seed: 'kids-party1',  alt: 'Festa de aniversário temática colorida',       w: 600, h: 400, span: 'wide' },
-  { seed: 'kids-party2',  alt: 'Decoração com balões e enfeites',              w: 400, h: 400, span: '' },
-  { seed: 'kids-party3',  alt: 'Bolo de aniversário temático',                 w: 400, h: 300, span: '' },
-  { seed: 'kids-party4',  alt: 'Crianças brincando na área lúdica',            w: 400, h: 400, span: '' },
-  { seed: 'kids-party5',  alt: 'Mesa de doces e guloseimas',                   w: 400, h: 300, span: '' },
-  { seed: 'kids-party6',  alt: 'Salão decorado para festa temática',           w: 600, h: 400, span: 'wide' },
-  { seed: 'kids-party7',  alt: 'Animação infantil com personagens',            w: 400, h: 400, span: '' },
-  { seed: 'kids-party8',  alt: 'Festa com tema de princesas',                  w: 400, h: 300, span: '' },
-  { seed: 'kids-party9',  alt: 'Crianças comemorando com balões',              w: 400, h: 400, span: '' },
+  { src: '/assets/images/festa-circo-azul.jpeg',  alt: 'Festa temática de circo com balões coloridos e animais',     span: 'wide' },
+  { src: '/assets/images/festa-ovelhinha.jpeg',   alt: 'Festa temática da ovelhinha em tons de verde e rosé',        span: '' },
+  { src: '/assets/images/festa-margaridas.jpeg',  alt: 'Festa temática de margaridas com bolo e flores',             span: '' },
+  { src: '/assets/images/festa-bluey.jpeg',       alt: 'Festa temática da Bluey com margaridas e balões',            span: '' },
+  { src: '/assets/images/festa-fundo-do-mar.jpeg',alt: 'Festa temática fundo do mar com cavalo-marinho e baleia',    span: '' },
+  { src: '/assets/images/festa-cinderela.jpeg',   alt: 'Festa temática da Cinderela com castelo e bolo encantado',   span: 'wide' },
+  { src: '/assets/images/festa-harry-potter.jpeg',alt: 'Festa temática de Harry Potter com trem e bolo da casa',     span: '' },
+  { src: '/assets/images/festa-chapeuzinho.jpeg', alt: 'Festa temática da Chapeuzinho Vermelho com floresta e bolo', span: '' },
+  { src: '/assets/images/festa-circo-rosa.jpeg',  alt: 'Festa temática circo em tons de rosa com elefante e urso',   span: '' },
 ];
 ---
 
@@ -27,11 +27,11 @@ const photos = [
       {photos.map((p) => (
         <div class={`gallery-item ${p.span}`} data-lightbox>
           <img
-            src={`https://picsum.photos/seed/${p.seed}/${p.w}/${p.h}`}
+            src={p.src}
             alt={p.alt}
             loading="lazy"
-            width={p.w}
-            height={p.h}
+            width="1600"
+            height="1200"
           />
           <div class="gallery-overlay">
             <span class="overlay-icon">🔍</span>

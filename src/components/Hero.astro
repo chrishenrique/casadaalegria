@@ -2,11 +2,11 @@
 const WA = 'https://wa.me/5531971520138?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20visita%20ao%20sal%C3%A3o%20Casa%20da%20Alegria!';
 
 const slides = [
-  { seed: 'festa-infantil-1', alt: 'Festa temática colorida para crianças' },
-  { seed: 'festa-infantil-2', alt: 'Decoração encantada de aniversário' },
-  { seed: 'festa-infantil-3', alt: 'Crianças comemorando com balões' },
-  { seed: 'festa-infantil-4', alt: 'Mesa de doces e bolo temático' },
-  { seed: 'festa-infantil-5', alt: 'Salão decorado para festa infantil' },
+  { src: '/assets/images/festa-cinderela.jpeg',     alt: 'Festa temática da Cinderela com castelo e decoração azul' },
+  { src: '/assets/images/festa-circo-azul-2.jpeg',   alt: 'Festa temática de circo com balões coloridos e animais' },
+  { src: '/assets/images/festa-fundo-do-mar-2.jpeg', alt: 'Festa temática fundo do mar com polvo e tartaruga' },
+  { src: '/assets/images/festa-ovelhinha-2.jpeg',    alt: 'Festa temática da ovelhinha em tons suaves de verde e rosé' },
+  { src: '/assets/images/festa-bluey.jpeg',          alt: 'Festa temática da Bluey com margaridas e balões' },
 ];
 ---
 
@@ -16,7 +16,7 @@ const slides = [
   <div class="hero-slides" aria-hidden="true">
     {slides.map((s, i) => (
       <img
-        src={`https://picsum.photos/seed/${s.seed}/1400/900`}
+        src={s.src}
         alt={s.alt}
         class={`hero-slide ${i === 0 ? 'active' : ''}`}
         loading={i === 0 ? 'eager' : 'lazy'}

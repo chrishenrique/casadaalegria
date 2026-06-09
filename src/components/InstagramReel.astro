@@ -1,0 +1,75 @@
+---
+// Embed reutilizável de Reel do Instagram.
+interface Props {
+  permalink: string;
+  id?: string;
+  tag?: string;
+  title?: string;
+  subtitle?: string;
+}
+const { permalink, id, tag, title, subtitle } = Astro.props;
+---
+
+<section id={id} class="ig-reel" aria-label={title ?? 'Reel do Instagram'}>
+  <div class="container">
+    {(tag || title || subtitle) && (
+      <div class="section-header reveal">
+        {tag && <span class="section-tag">{tag}</span>}
+        {title && <h2 class="section-title">{title}</h2>}
+        {subtitle && <p class="section-subtitle">{subtitle}</p>}
+      </div>
+    )}
+
+    <div class="reel-wrap reveal">
+      <blockquote
+        class="instagram-media"
+        data-instgrm-captioned
+        data-instgrm-permalink={permalink}
+        data-instgrm-version="14"
+        style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:1px; max-width:540px; min-width:326px; padding:0; width:99.375%;"
+      >
+        <a href={permalink} target="_blank" rel="noopener noreferrer">
+          Ver este Reel no Instagram — Casa da Alegria (@_casadaalegria)
+        </a>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ig-reel { background: var(--bg); }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  .section-header .section-subtitle { margin: 0 auto; }
+
+  .reel-wrap {
+    display: flex;
+    justify-content: center;
+  }
+  .reel-wrap :global(.instagram-media) {
+    margin: 0 auto !important;
+  }
+</style>
+
+<script>
+  // Carrega o script de embed do Instagram uma única vez e processa os blockquotes.
+  function loadInstagramEmbed() {
+    const w = window as any;
+    if (w.instgrm) {
+      w.instgrm.Embeds.process();
+      return;
+    }
+    if (document.getElementById('instagram-embed-script')) return;
+    const s = document.createElement('script');
+    s.id = 'instagram-embed-script';
+    s.async = true;
+    s.src = 'https://www.instagram.com/embed.js';
+    document.body.appendChild(s);
+  }
+
+  loadInstagramEmbed();
+  document.addEventListener('astro:after-swap', loadInstagramEmbed);
+</script>
